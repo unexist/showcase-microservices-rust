@@ -1,0 +1,7 @@
+= Showcase for microservices on Rust
+
+This project holds a showcase for Rust related things.
+
+== todo-service-actix
+
+Small implementation based on Actix, 3-Layer and DI (Dependency Inversion + Dependency Injection)
