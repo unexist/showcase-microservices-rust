@@ -10,11 +10,7 @@
 ///
 
 use spring::{get, route, auto_config, App};
-use spring_web::{
-    error::Result, extractor::{Path, Component}, handler::TypeRouter, response::IntoResponse, Router,
-    WebConfigurator, WebPlugin,
-};
-use anyhow::Context;
+use spring_web::{axum::response::IntoResponse, WebConfigurator, WebPlugin, extractor::Path};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
