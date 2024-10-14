@@ -2,6 +2,16 @@
 
 This project holds a showcase for Rust related things.
 
-== todo-service-actix
+== Modules
 
-Small implementation based on Actix, 3-Layer and DI (Dependency Inversion + Dependency Injection)
+[cols="1,3"]
+|===
+| todo-service-actix
+| Small implementation based on Actix
+
+| todo-service-axum
+| Small implementation based on Axum
+
+| todo-service-spring-rs
+| Small implementation based on Spring-rs
+|===
