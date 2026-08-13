@@ -1,6 +1,12 @@
 [package]
 name = "todo-service-spring-rs"
 version = "1.0.0"
+authors = [
+    "Christoph Kappel <christoph@unexist.dev>"
+]
+license-file = "LICENSE"
+homepage = "https://unexist.dev"
+repository = "https://hg.unexist.dev/showcase-microservices-rust"
 edition = "2021"
 
 [dependencies]
