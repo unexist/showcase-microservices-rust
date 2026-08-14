@@ -1,6 +1,3 @@
-use std::{cell::RefCell, sync::Arc};
-
-use tokio::sync::Mutex;
 ///
 /// @package Showcase-Microservices-Rust
 ///
@@ -15,6 +12,8 @@ use tokio::sync::Mutex;
 use topcoat::{
     Result, context::{Cx, CxBuilder, app_context}, router::{Body, Next, Response, Router, RouterBuilderDiscoverExt, content::Json, layer, layout, page, route}, view::view,
 };
+use std::sync::Arc;
+use tokio::sync::Mutex;
 
 #[derive(serde::Deserialize, serde::Serialize, Clone)]
 struct Todo {
