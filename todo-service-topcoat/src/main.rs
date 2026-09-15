@@ -10,7 +10,7 @@
 ///
 
 use topcoat::{
-    Result, context::{Cx, app_context}, router::{Body, Next, Router, RouterBuilderDiscoverExt, content::Json, layer, layout, page, response::Response, route}, view::view,
+    Result, context::{Cx, app_context}, router::{Body, Next, Router, RouterBuilderDiscoverExt, Slot, content::Json, layer, layout, page, response::Response, route}, view::{View, view},
 };
 use std::sync::Arc;
 use tokio::sync::Mutex;
@@ -44,8 +44,8 @@ fn db(cx: &Cx) -> &Database {
 }
 
 #[layout("/")]
-async fn root_layout(slot: Result) -> Result {
-    view! {
+async fn root_layout(slot: Slot<'_>) -> Result<impl View> {
+    Ok(view! {
         <!DOCTYPE html>
         <html>
             <body>
@@ -53,10 +53,10 @@ async fn root_layout(slot: Result) -> Result {
                     <a href="/">"Home"</a>
                     <a href="/todos">"Todos"</a>
                 </nav>
-                (slot?)
+                (slot)
             </body>
         </html>
-    }
+    })
 }
 
 #[layer("/api")]
@@ -69,13 +69,13 @@ async fn api_log(cx: &Cx, body: Body, next: Next<'_>) -> Result<Response> {
 }
 
 #[page("/")]
-async fn home() -> Result {
-    view! { <h1>"Welcome"</h1> }
+async fn home() -> Result<impl View> {
+    Ok(view! { <h1>"Welcome"</h1> })
 }
 
 #[page("/todos")]
-async fn todos_list() -> Result {
-    view! { <h1>"All todos"</h1> }
+async fn todos_list() -> Result<impl View> {
+    Ok(view! { <h1>"All todos"</h1> })
 }
 
 #[route(POST "/api/todos")]
