@@ -4,14 +4,17 @@ profiles:
             todo_host: http://localhost:8080
 
 requests:
-    list: !request
+    list:
         method: GET
         url: "{{todo_host}}/api/todos"
 
-    todo: !request
+    todo:
         method: POST
         url: "{{todo_host}}/api/todos"
-        headers:
-            accept: application/json
-        body: !json { "description": "string", "done": true, "title": "string" }
+        body:
+          type: json
+          data:
+            description: string
+            done: true
+            title: string
 
