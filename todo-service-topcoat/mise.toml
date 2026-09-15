@@ -33,5 +33,5 @@ cargo upgrade -i $DRY_RUN
 [tasks.clippy]
 run = "bacon clippy"
 
-[tasks.cli]
+[tasks.topcoat]
 run = "PORT=8080 topcoat dev"
