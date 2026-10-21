@@ -1,3 +1,5 @@
+use std::sync::Arc;
+use tokio::sync::Mutex;
 ///
 /// @package Showcase-Microservices-Rust
 ///
@@ -8,12 +10,16 @@
 /// This program can be distributed under the terms of the GNU GPLv2.
 /// See the file LICENSE for details.
 ///
-
 use topcoat::{
-    Result, context::{Cx, app_context}, router::{Body, Next, Router, RouterBuilderDiscoverExt, Slot, content::Json, layer, layout, page, response::Response, route}, view::{View, view},
+    Result,
+    context::{Cx, app_context},
+    router::{
+        Body, Next, Router, RouterBuilderDiscoverExt, Slot, content::Json, layer, layout, page,
+        response::Response, route,
+    },
+    runtime::shard,
+    view::{View, view},
 };
-use std::sync::Arc;
-use tokio::sync::Mutex;
 
 #[derive(serde::Deserialize, serde::Serialize, Clone)]
 struct Todo {
@@ -75,7 +81,21 @@ async fn home() -> Result<impl View> {
 
 #[page("/todos")]
 async fn todos_list() -> Result<impl View> {
-    Ok(view! { <h1>"All todos"</h1> })
+    Ok(view! {
+        <h1>"All todos"</h1>
+        fetch_todo_list()
+    })
+}
+
+#[shard]
+async fn fetch_todo_list(cx: &Cx) -> Result<impl View> {
+    Ok(view! {
+        <ul>
+            for todo in db(cx).get_all().await? {
+                <li>(todo.title)</li>
+            }
+        </ul>
+    })
 }
 
 #[route(POST "/api/todos")]
