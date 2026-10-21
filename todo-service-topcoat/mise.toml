@@ -39,3 +39,6 @@ run = "bacon clippy"
 
 [tasks.topcoat]
 run = "PORT=8080 topcoat dev"
+
+[tasks.hurl]
+run = "hurl ../*.hurl"
