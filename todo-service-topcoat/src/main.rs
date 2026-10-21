@@ -1,5 +1,3 @@
-use std::sync::Arc;
-use tokio::sync::Mutex;
 ///
 /// @package Showcase-Microservices-Rust
 ///
@@ -10,6 +8,8 @@ use tokio::sync::Mutex;
 /// This program can be distributed under the terms of the GNU GPLv2.
 /// See the file LICENSE for details.
 ///
+use std::sync::Arc;
+use tokio::sync::Mutex;
 use topcoat::{
     Result,
     context::{Cx, app_context},
