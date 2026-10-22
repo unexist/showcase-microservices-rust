@@ -12,5 +12,5 @@ edition = "2024"
 [dependencies]
 anyhow = "1.0.104"
 serde = "1.0.229"
-tokio = { version = "1.53.3", features = ["rt-multi-thread", "macros"] }
+tokio = { version = "1.54.1", features = ["rt-multi-thread", "macros"] }
 topcoat = { version = "0.10.0", features = ["router", "tower"] }
